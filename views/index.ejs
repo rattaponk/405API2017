@@ -2,17 +2,19 @@
     <h3>Create new customer</h3>
     <form method="POST" action="/user/add">
         <div id="login-box">
-            <div class="left">           
+            <div class="left">
                 <input type="text" class="add" name="name" placeholder="Full Name" />
                 <input type="text" class="add" name="gender" placeholder="Gender" />
                 <input type="text" class="add" name="age" placeholder="Age" />
                 <input type="text" class="add" name="email" placeholder="E-mail" />
                 <input type="submit" class="add" value="ADD" />
-            </div>   
+            </div>
         </div>
-    </form>       
+    </form>
     <br><br>
-    <h3><%= title %></h3>
+    <h3>
+        <%= title %>
+    </h3>
     <table>
         <thead>
             <tr>
@@ -25,14 +27,22 @@
         </thead>
         <tbody>
             <% users.forEach( function(user) { %>
-                <tr>                
+                <tr>
                     <td><strong><%= user.id %></strong></td>
-                    <td><%= user.name %></td>
-                    <td><%= user.gender %></td>
-                    <td><%= user.age %></td>
-                    <td><%= user.email %></td>
+                    <td>
+                        <%= user.name %>
+                    </td>
+                    <td>
+                        <%= user.gender %>
+                    </td>
+                    <td>
+                        <%= user.age %>
+                    </td>
+                    <td>
+                        <%= user.email %>
+                    </td>
                 </tr>
-            <% }) %>      
+                <% }) %>
         </tbody>
     </table>
     <br><br>
@@ -44,30 +54,6 @@
                 <input type="submit" class="delete" value="DELETE">
             </div>
         </div>
-    </form> 
+    </form>
 
-     <!--<form method="POST" action="/user/add">
-        <label>Full Name</label><br>
-        <input type="text" name="name">
-        <br><br>
-        <label>Gender</label><br>
-        <input type="text" name="gender">
-        <br><br>
-        <label>Age</label><br>
-        <input type="text" name="age">
-        <br><br>
-        <label>Email</label><br>
-        <input type="text" name="email">
-        <br><br>
-        <input type="submit" value="Add">
-    </form>-->
-
-    <!--<h3><%= title %></h3>
-    <ul>
-        <% users.forEach( function(user) { %>
-        <li>(<%= user.id %>) <%= user.name %> <%= user.gender %> <%= user.age %> <%= user.email %> </li>
-        <% }) %>
-    </ul>-->
-    
-<% include footer %>
-
+    <% include footer %>

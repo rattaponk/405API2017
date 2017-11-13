@@ -1,13 +1,12 @@
 const MongoClient = require('mongodb').MongoClient;
 const MONGO_URL = "mongodb://rattapon:40459@ds259855.mlab.com:59855/user";
 
-MongoClient.connect(MONGO_URL, (err, db) => {  
+MongoClient.connect(MONGO_URL, (err, db) => {
   if (err) {
-    return console.log("Connecttion Failed : " ,  err);
+    return console.log("Connecttion Failed : ", err);
   }
-    console.log("Connecttion success.");
-  var data = [
-    {
+  console.log("Connecttion success.");
+  var data = [{
       "id": 1,
       "name": "Mcdaniel Levy",
       "gender": "male",
@@ -79,7 +78,7 @@ MongoClient.connect(MONGO_URL, (err, db) => {
     }
   ];
 
-  db.collection("users").insertMany(data, function(err, res) {
+  db.collection("users").insertMany(data, function (err, res) {
     if (err) throw err;
     console.log("Insert data success.")
   });
