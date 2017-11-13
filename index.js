@@ -69,11 +69,7 @@ MongoClient.connect(MONGO_URL, (err, db) => {
         data.push(newUser);
         console.log("User name : " + newUser.name + " inserted");
       });
-    });
-    res.json({
-      success: true,
-      message: 'user has been create',
-    });
+    });    
     res.redirect('/');
   });
 
