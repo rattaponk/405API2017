@@ -70,37 +70,38 @@ MongoClient.connect(MONGO_URL, (err, db) => {
         console.log("User name : " + newUser.name + " inserted");
       });
     });
-    res.json({
-      success: true,
-      message: 'user has been create',
-    });
+    // res.json({
+    //   success: true,
+    //   message: 'user has been create',
+    // });
+    res.redirect('/');
   });
 
-  app.post('/user/add', (req, res) => {
-    db.collection("users").find({}).sort({
-      id: -1
-    }).limit(1).toArray(function (err, result) {
-      if (err) {
-        return console.log(err);
-      }
-      var uid = result[0]["id"];
-      var newUser = {
-        id: parseInt(uid) + 1,
-        name: req.body.name,
-        gender: req.body.gender,
-        age: parseInt(req.body.age),
-        email: req.body.email
-      }
-      db.collection("users").insertOne(newUser, function (err, res) {
-        if (err) {
-          return console.log(err);
-        }
-      });
-      data.push(newUser);
-      console.log("User name : " + newUser.name + " inserted");
-      res.redirect('/');
-    });
-  });
+  // app.post('/user/add', (req, res) => {
+  //   db.collection("users").find({}).sort({
+  //     id: -1
+  //   }).limit(1).toArray(function (err, result) {
+  //     if (err) {
+  //       return console.log(err);
+  //     }
+  //     var uid = result[0]["id"];
+  //     var newUser = {
+  //       id: parseInt(uid) + 1,
+  //       name: req.body.name,
+  //       gender: req.body.gender,
+  //       age: parseInt(req.body.age),
+  //       email: req.body.email
+  //     }
+  //     db.collection("users").insertOne(newUser, function (err, res) {
+  //       if (err) {
+  //         return console.log(err);
+  //       }
+  //     });
+  //     data.push(newUser);
+  //     console.log("User name : " + newUser.name + " inserted");
+  //     res.redirect('/');
+  //   });
+  // });
 
   app.post('/user/delete', (req, res) => {
     var uid = req.body.uid;

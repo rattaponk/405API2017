@@ -1,6 +1,6 @@
 <% include header %>
     <h3>Create new customer</h3>
-    <form method="POST" action="/user/add">
+    <form name="form" method="POST" action="/user" onsubmit="return checkform()">
         <div id="login-box">
             <div class="left">
                 <input type="text" class="add" name="name" placeholder="Full Name" />
@@ -11,7 +11,8 @@
             </div>
         </div>
     </form>
-    <br><br>
+    <br>
+    <br>
     <h3>
         <%= title %>
     </h3>
@@ -28,7 +29,11 @@
         <tbody>
             <% users.forEach( function(user) { %>
                 <tr>
-                    <td><strong><%= user.id %></strong></td>
+                    <td>
+                        <strong>
+                            <%= user.id %>
+                        </strong>
+                    </td>
                     <td>
                         <%= user.name %>
                     </td>
@@ -45,7 +50,8 @@
                 <% }) %>
         </tbody>
     </table>
-    <br><br>
+    <br>
+    <br>
     <h3>Delete customer by UID</h3>
     <form method="POST" action="/user/delete">
         <div class="deleteform">
@@ -55,5 +61,36 @@
             </div>
         </div>
     </form>
+
+    <script>
+        function checkform() {
+            var gender = ["Male", "Female", "male", "female", "ชาย", "หญิง"];
+            var cansubmit = true;
+
+            if (gender.indexOf(document.forms["form"]["gender"].value) == -1) {
+                alert("Plese enter \"Male\", \"Female\", \"ชาย\", \"หญิง\"");
+                cansubmit = false;
+            }
+
+            if (isNaN(document.forms["form"]["age"].value)) {
+                alert("Plese enter number");
+                cansubmit = false;
+            }
+
+            if (!validateEmail(document.forms["form"]["email"].value)) {
+                alert("Plese enter the valid E-mail");
+                cansubmit = false;
+            }
+
+            if (!cansubmit)
+                return false;
+        }
+
+        function validateEmail(email) {
+            var re =
+                /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
+        }
+    </script>
 
     <% include footer %>
