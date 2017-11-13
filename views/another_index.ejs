@@ -1,0 +1,49 @@
+<% include another_header %>
+    <h3>Create new customer</h3>
+    <form method="POST" action="/user/add">
+        <div id="login-box">
+            <div class="left">           
+                <input type="text" class="add" name="name" placeholder="Full Name" />
+                <input type="text" class="add" name="gender" placeholder="Gender" />
+                <input type="text" class="add" name="age" placeholder="Age" />
+                <input type="text" class="add" name="email" placeholder="E-mail" />
+                <input type="submit" class="add" value="ADD" />
+            </div>   
+        </div>
+    </form>   
+    <br><br>
+    <h3>Delete customer by UID</h3>
+    <form method="POST" action="/user/delete">
+        <div class="deleteform">
+            <div class="deleteinput">
+                <input type="text" class="delete" name="uid" placeholder="User ID" /> 
+                <input type="submit" class="delete" value="DELETE" />
+            </div>
+        </div>
+    </form> 
+    <br><br>
+    <h3><%= title %></h3>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% users.forEach( function(user) { %>
+                <tr>                
+                    <td><strong><%= user.id %></strong></td>
+                    <td><%= user.name %></td>
+                    <td><%= user.gender %></td>
+                    <td><%= user.age %></td>
+                    <td><%= user.email %></td>
+                </tr>
+            <% }) %>      
+        </tbody>
+    </table>
+    
+<% include footer %>
