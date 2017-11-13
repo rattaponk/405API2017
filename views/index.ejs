@@ -10,17 +10,7 @@
                 <input type="submit" class="add" value="ADD" />
             </div>   
         </div>
-    </form>   
-    <br><br>
-    <h3>Delete customer by UID</h3>
-    <form method="POST" action="/user/delete">
-        <div class="deleteform">
-            <div class="deleteinput">
-                <input type="text" class="delete" name="uid" placeholder="User ID">
-                <input type="submit" class="delete" value="DELETE">
-            </div>
-        </div>
-    </form> 
+    </form>       
     <br><br>
     <h3><%= title %></h3>
     <table>
@@ -45,6 +35,16 @@
             <% }) %>      
         </tbody>
     </table>
+    <br><br>
+    <h3>Delete customer by UID</h3>
+    <form method="POST" action="/user/delete">
+        <div class="deleteform">
+            <div class="deleteinput">
+                <input type="text" class="delete" name="uid" placeholder="User ID">
+                <input type="submit" class="delete" value="DELETE">
+            </div>
+        </div>
+    </form> 
 
      <!--<form method="POST" action="/user/add">
         <label>Full Name</label><br>

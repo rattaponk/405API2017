@@ -1,0 +1,86 @@
+const MongoClient = require('mongodb').MongoClient;
+const MONGO_URL = "mongodb://rattapon:40459@ds259855.mlab.com:59855/user";
+
+MongoClient.connect(MONGO_URL, (err, db) => {  
+  if (err) {
+    return console.log("Connecttion Failed : " ,  err);
+  }
+    console.log("Connecttion success.");
+  var data = [
+    {
+      "id": 1,
+      "name": "Mcdaniel Levy",
+      "gender": "male",
+      "age": 17,
+      "email": "mcdaniellevy@exospeed.com"
+    },
+    {
+      "id": 2,
+      "name": "Jennings Mccullough",
+      "gender": "male",
+      "age": 31,
+      "email": "jenningsmccullough@exospeed.com"
+    },
+    {
+      "id": 3,
+      "name": "Juarez Avery",
+      "gender": "male",
+      "age": 28,
+      "email": "juarezavery@exospeed.com"
+    },
+    {
+      "id": 4,
+      "name": "Gay Vaughan",
+      "gender": "male",
+      "age": 24,
+      "email": "gayvaughan@exospeed.com"
+    },
+    {
+      "id": 5,
+      "name": "Marsh Ball",
+      "gender": "male",
+      "age": 31,
+      "email": "marshball@exospeed.com"
+    },
+    {
+      "id": 6,
+      "name": "Poole Carey",
+      "gender": "male",
+      "age": 38,
+      "email": "poolecarey@exospeed.com"
+    },
+    {
+      "id": 7,
+      "name": "Gross Middleton",
+      "gender": "male",
+      "age": 37,
+      "email": "grossmiddleton@exospeed.com"
+    },
+    {
+      "id": 8,
+      "name": "Jackson Reeves",
+      "gender": "male",
+      "age": 36,
+      "email": "jacksonreeves@exospeed.com"
+    },
+    {
+      "id": 9,
+      "name": "Hamilton Hawkins",
+      "gender": "male",
+      "age": 31,
+      "email": "hamiltonhawkins@exospeed.com"
+    },
+    {
+      "id": 10,
+      "name": "Garrison Collier",
+      "gender": "male",
+      "age": 36,
+      "email": "garrisoncollier@exospeed.com"
+    }
+  ];
+
+  db.collection("users").insertMany(data, function(err, res) {
+    if (err) throw err;
+    console.log("Insert data success.")
+  });
+});
