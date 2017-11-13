@@ -171,10 +171,10 @@ MongoClient.connect(MONGO_URL, (err, db) => {
     });
     var newvalues = {
       id: parseInt(uid),
-      name: req.body.name,
-      gender: req.body.gender,
-      age: parseInt(req.body.age),
-      email: req.body.email
+      name: uname,
+      gender: ugender,
+      age: parseInt(uage),
+      email: uemail
     }
     db.collection("users").updateOne(query, newvalues, function (err, res) {
       if (err) {
