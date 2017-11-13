@@ -176,12 +176,12 @@ MongoClient.connect(MONGO_URL, (err, db) => {
       age: parseInt(req.body.age),
       email: req.body.email
     }
-    // db.collection("users").updateOne(query, newvalues, function (err, res) {
-    //   if (err) {
-    //     return console.log(err);
-    //   }
-    //   console.log("User id : " + uid + " updated");
-    // });
+    db.collection("users").updateOne(query, newvalues, function (err, res) {
+      if (err) {
+        return console.log(err);
+      }
+      console.log("User id : " + uid + " updated");
+    });
     res.json({
       success: true,
       message: 'user id:' + newvalues.id + ' has been edit',
