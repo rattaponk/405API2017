@@ -170,7 +170,9 @@ MongoClient.connect(MONGO_URL, (err, db) => {
     });  
   });
 
-  app.listen(8080, function() {
+const PORT = process.env.PORT || 8080;
+
+  app.listen(PORT, function() {
     console.log('Server Started on Port 8000…');
   });
 
