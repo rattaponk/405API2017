@@ -21,7 +21,7 @@ MongoClient.connect(MONGO_URL, (err, db) => {
  
 
   app.get('/', (req, res) => {    
-     db.collection("users").find({}).toArray(function(err, result) {
+     db.collection("users").find({}).sort({id:1}).toArray(function(err, result) {
       // console.log(result);
      if (err) {
       return console.log(err);
@@ -89,11 +89,8 @@ MongoClient.connect(MONGO_URL, (err, db) => {
         }                   
       });           
       data.push(newUser);
-      console.log("User name : " + newUser.name + " inserted");        
-      res.render('another_index',{
-          title: "Customer List",
-          users: data
-        }); // render ‘views/index.ejs’  
+      console.log("User name : " + newUser.name + " inserted");
+      res.redirect('/');
     });
   });
 
@@ -115,11 +112,8 @@ MongoClient.connect(MONGO_URL, (err, db) => {
       });
     console.log("find delete id:" + uid +" have index:" + index);
     data.splice(index,1);
-    console.log("User id : " + uid + " deleted");    
-    res.render('another_index',{
-        title: "Customer List",
-        users: data
-      }); // render ‘views/index.ejs’ 
+    console.log("User id : " + uid + " deleted");
+    res.redirect('/');
   });
 
   app.get('/user/:id', (req, res) => {
@@ -170,8 +164,7 @@ MongoClient.connect(MONGO_URL, (err, db) => {
     });  
   });
 
-const PORT = process.env.PORT || 8080;
-
+  const PORT = process.env.PORT || 8080;
   app.listen(PORT, function() {
     console.log('Server Started on Port 8000…');
   });
