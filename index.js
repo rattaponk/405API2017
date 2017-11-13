@@ -144,6 +144,31 @@ MongoClient.connect(MONGO_URL, (err, db) => {
     var query = {
       id: parseInt(uid)
     };
+    var uname, ugender, uage, uemail;
+    db.collection("users").find(query).toArray(function (err, result) {
+      if (err) {
+        return console.log(err);
+      }
+      uname = result[0]["name"];
+      ugender = result[0]["gender"];
+      uage = result[0]["age"];
+      uemail = result[0]["email"];
+      console.log("Old user id(" + uid + ") informations : " + uname + " " + ugender + " " + uage + " " + uemail)
+
+      if (req.body.name != undefined) {
+        uname = req.body.name;
+      }
+      if (req.body.gender != undefined) {
+        ugender = req.body.gender;
+      }
+      if (req.body.age != undefined) {
+        uage = req.body.age;
+      }
+      if (req.body.email != undefined) {
+        uemail = req.body.email;
+      }
+      console.log("New user id(" + uid + ") information : " + uname + " " + ugender + " " + uage + " " + uemail)
+    });
     var newvalues = {
       id: parseInt(uid),
       name: req.body.name,
@@ -151,12 +176,12 @@ MongoClient.connect(MONGO_URL, (err, db) => {
       age: parseInt(req.body.age),
       email: req.body.email
     }
-    db.collection("users").updateOne(query, newvalues, function (err, res) {
-      if (err) {
-        return console.log(err);
-      }
-      console.log("User id : " + uid + " updated");
-    });
+    // db.collection("users").updateOne(query, newvalues, function (err, res) {
+    //   if (err) {
+    //     return console.log(err);
+    //   }
+    //   console.log("User id : " + uid + " updated");
+    // });
     res.json({
       success: true,
       message: 'user id:' + newvalues.id + ' has been edit',
